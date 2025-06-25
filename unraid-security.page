@@ -1,0 +1,5 @@
+[plugin]
+title = Unraid Security
+category = Settings
+type = php
+entry = unraid-security.page.php
