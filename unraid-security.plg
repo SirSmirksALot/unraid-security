@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PLUGIN name="unraid-security" author="SirSmirksALot" version="2025.06.25" min="6.9.0">
+  <CATEGORY>Security</CATEGORY>
+
   <CHANGES>
     Initial release of Unraid Security Plugin
   </CHANGES>
