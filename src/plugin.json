@@ -1,0 +1,8 @@
+{
+  "name": "unraid-security",
+  "version": "2025.06.25",
+  "author": "Sean Knight",
+  "category": "Security",
+  "min": "6.12.0",
+  "description": "Placeholder plugin for testing installation structure."
+}
