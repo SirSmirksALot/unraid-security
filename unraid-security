@@ -1,0 +1,4 @@
+#!/bin/bash
+logger "Unraid Security Plugin: Running security check..."
+# Add your real logic here
+echo "Check complete. Results written to /var/log/syslog"
