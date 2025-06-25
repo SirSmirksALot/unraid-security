@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <PLUGIN name="unraid-security" author="Sean Knight" version="2025.06.25">
   <CHANGES>
-    Moved all file installs into INSTALL section to bypass chmod failures.
+    Moved all file installation to INSTALL section to avoid chmod failures.
   </CHANGES>
 
   <INSTALL>
