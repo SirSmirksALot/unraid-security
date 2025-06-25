@@ -2,14 +2,10 @@
   <display>
     <Banner>Unraid Security Plugin</Banner>
   </display>
-
-  <!-- Install PAGE file -->
   <file>
     <source>unraid-security.page</source>
     <target>/usr/local/emhttp/plugins/unraid-security/unraid-security.page</target>
   </file>
-
-  <!-- Install executable script -->
   <file>
     <source>unraid-security</source>
     <target>/usr/local/emhttp/plugins/unraid-security/unraid-security</target>
