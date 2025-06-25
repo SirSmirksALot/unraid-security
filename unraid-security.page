@@ -1,13 +1,4 @@
 <page>
   <menu>Settings</menu>
-  <title>Unraid Security</title>
-  <banner>Unraid Security Plugin</banner>
-  <content>
-    <fieldset>
-      <legend>Security Check</legend>
-      <form method="post">
-        <input type="submit" name="check" value="Run Security Check">
-      </form>
-    </fieldset>
-  </content>
+  <badtag>This is invalid</badtag>
 </page>
