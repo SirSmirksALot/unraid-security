@@ -1,4 +1,25 @@
 <template>
-  <h1>Unraid Security</h1>
-  <p>This is the placeholder UI for the unraid-security plugin.</p>
+  <div>
+    <h1>Unraid Security</h1>
+    <p>This is the placeholder UI for the Unraid Security plugin.</p>
+  </div>
 </template>
+
+<script>
+export default {
+  name: "UnraidSecurity"
+};
+</script>
+
+<style scoped>
+h1 {
+  color: #44bbff;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+p {
+  font-size: 16px;
+  color: #ddd;
+}
+</style>
