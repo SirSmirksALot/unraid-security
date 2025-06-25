@@ -8,7 +8,7 @@
     <!ENTITY raw "https://raw.githubusercontent.com/&github;/master">
 ]>
 
-<PLUGIN name="&name;" author="&author;" version="&version;" icon="shield" min="6.12">
+<PLUGIN name="&name;" author="&author;" version="&version;" min="6.12">
 
     <FILE Run="/bin/bash">
         <INLINE>
@@ -21,16 +21,24 @@
         <URL>&raw;/checkSecurity.php</URL>
     </FILE>
 
+    <FILE Name="&plugdir;/unraid-security.page">
+        <URL>&raw;/unraid-security.page</URL>
+    </FILE>
+
+    <FILE Name="&plugdir;/unraid-security.page.php">
+        <URL>&raw;/unraid-security.page.php</URL>
+    </FILE>
+
     <FILE Run="/bin/bash">
         <INLINE>
-            echo "Installed &name; plugin"
+            echo "Installed &name;"
         </INLINE>
     </FILE>
 
     <FILE Run="/bin/bash" Method="remove">
         <INLINE>
             rm -rf &plugdir;
-            echo "Removed &name; plugin"
+            echo "Removed &name;"
         </INLINE>
     </FILE>
 
