@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<Plugin>
+  <Name>Unraid Security</Name>
+  <Author>Sean Knight</Author>
+  <Category>Tools</Category>
+  <Type>page</Type>
+  <Title>Security Dashboard</Title>
+</Plugin>
