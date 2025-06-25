@@ -17,6 +17,7 @@
   <INSTALL>
     #!/bin/bash
     echo "Installing unraid-security"
+    chmod 644 /usr/local/emhttp/plugins/unraid-security/unraid-security.page
     chmod +x /usr/local/emhttp/plugins/unraid-security/check_security.sh
   </INSTALL>
 
@@ -25,4 +26,8 @@
     echo "Removing unraid-security"
     rm -rf /usr/local/emhttp/plugins/unraid-security
   </REMOVE>
+
+  <DISPLAY>
+    <FILE>unraid-security.page</FILE>
+  </DISPLAY>
 </PLUGIN>
