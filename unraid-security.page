@@ -4,14 +4,14 @@
   <banner>Unraid Security Plugin</banner>
   <content>
     <fieldset>
-      <legend>Security Check</legend>
+      <legend>Run Security Check</legend>
       <form method="post">
-        <input type="submit" name="run_check" value="Run Security Check">
+        <input type="submit" name="run_check" value="Run Check" />
       </form>
       <?php
       if ($_POST['run_check']) {
         exec("/usr/local/emhttp/plugins/unraid-security/unraid-security");
-        echo "<p><strong>✅ Security check executed. Check syslog.</strong></p>";
+        echo "<p><strong>✅ Check executed. See syslog.</strong></p>";
       }
       ?>
     </fieldset>
