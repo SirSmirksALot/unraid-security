@@ -1,2 +1,2 @@
 #!/bin/bash
-logger "Unraid Security Plugin: Hello from the plugin!"
+logger "✅ Unraid Security Plugin ran successfully"
