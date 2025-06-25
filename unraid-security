@@ -1,2 +1,0 @@
-#!/bin/bash
-logger "✅ Unraid Security Plugin script was triggered"
