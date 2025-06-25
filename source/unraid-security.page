@@ -3,11 +3,7 @@ $docroot = $docroot ?? $_SERVER['DOCUMENT_ROOT'] ?: '/usr/local/emhttp';
 require_once "$docroot/webGui/include/Helpers.php";
 ?>
 
-<style>
-  .section { margin: 20px 0; }
-</style>
-
-<h2>Unraid Security Plugin</h2>
-<div class="section">
-  <p>This is a working test page. If you see this, your plugin is officially installed and visible.</p>
-</div>
+<fieldset>
+  <legend>Unraid Security Plugin</legend>
+  <p>Plugin is installed and working. This is a test page to verify proper registration.</p>
+</fieldset>
