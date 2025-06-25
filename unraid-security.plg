@@ -1,15 +1,18 @@
 <?xml version="1.0"?>
 <PLUGIN name="unraid-security" author="Sean Knight" version="2025.06.25">
   <CHANGES>
-    Initial release. Renamed .page and .json sources to avoid chmod failures.
+    Final fix: moved plugin.json to install step to bypass chmod bug.
   </CHANGES>
 
-  <FILE Name="/usr/local/emhttp/plugins/unraid-security/plugin.json" Mode="0644" Url="https://raw.githubusercontent.com/SirSmirksALot/unraid-security/main/src/plugin.json.txt" />
   <FILE Name="/usr/local/emhttp/plugins/unraid-security/include/style.css" Mode="0644" Url="https://raw.githubusercontent.com/SirSmirksALot/unraid-security/main/src/include/style.css" />
   <FILE Name="/usr/local/emhttp/plugins/unraid-security/scripts/security-check.sh" Mode="0755" Url="https://raw.githubusercontent.com/SirSmirksALot/unraid-security/main/src/scripts/security-check.sh" />
   <FILE Name="/usr/local/emhttp/plugins/unraid-security/unraid-security.page" Mode="0644" Url="https://raw.githubusercontent.com/SirSmirksALot/unraid-security/main/src/unraid-security.page.txt" />
 
   <INSTALL>
+    echo "Installing unraid-security plugin..."
+    mkdir -p /usr/local/emhttp/plugins/unraid-security
+    wget -q https://raw.githubusercontent.com/SirSmirksALot/unraid-security/main/src/plugin.json.txt -O /usr/local/emhttp/plugins/unraid-security/plugin.json
+    chmod 0644 /usr/local/emhttp/plugins/unraid-security/plugin.json
     echo "unraid-security plugin installed successfully."
   </INSTALL>
 
