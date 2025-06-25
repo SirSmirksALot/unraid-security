@@ -1,0 +1,18 @@
+```xml
+<plugin name="unraid-security" author="Sean Knight" version="2025.06.24" 
+        update="https://raw.githubusercontent.com/SirSmirksALot/unraid-security-plugin/master/plugin/unraid-security.plg" 
+        min="6.11.5" max="9.0.0">
+
+  <description>Security Visibility and Hardening Dashboard for Unraid</description>
+
+  <support>https://github.com/SirSmirksALot/unraid-security-plugin</support>
+
+  <changelog>
+    <![CDATA[
+    v0.1.0 - Initial MVP framework for Security Dashboard
+    ]]>
+  </changelog>
+
+  <install file="install.sh" />
+</plugin>
+```
