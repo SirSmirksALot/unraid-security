@@ -6,13 +6,13 @@
     <fieldset>
       <legend>Security Check</legend>
       <form method="post">
-        <input type="submit" name="run" value="Run Security Check">
+        <input type="submit" name="run_check" value="Run Security Check">
       </form>
       <?php
-        if ($_POST['run']) {
-          exec("/usr/local/emhttp/plugins/unraid-security/unraid-security");
-          echo "<p><strong>Security check executed. Check syslog for results.</strong></p>";
-        }
+      if ($_POST['run_check']) {
+        exec("/usr/local/emhttp/plugins/unraid-security/unraid-security");
+        echo "<p><strong>✅ Security check executed. Check syslog.</strong></p>";
+      }
       ?>
     </fieldset>
   </content>
