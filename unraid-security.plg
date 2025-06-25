@@ -1,0 +1,25 @@
+<PLUGIN name="unraid-security" author="Sean Knight" version="2025.06.24" category="Tools">
+  <CHANGES>Minimal working version of Unraid Security plugin.</CHANGES>
+
+  <FILE Name="/usr/local/emhttp/plugins/unraid-security/unraid-security.page" Mode="0644">
+    <![CDATA[
+<?xml version="1.0"?>
+<Plugin>
+  <Name>Unraid Security</Name>
+  <Author>Sean Knight</Author>
+  <Category>Tools</Category>
+  <Type>page</Type>
+  <Title>Security Dashboard</Title>
+</Plugin>
+    ]]>
+  </FILE>
+
+  <FILE Name="/usr/local/emhttp/plugins/unraid-security/unraid-security.php" Mode="0644">
+    <![CDATA[
+<?php
+echo "<h1>Unraid Security Plugin</h1>";
+echo "<p>This is the beginning of your Security Dashboard.</p>";
+?>
+    ]]>
+  </FILE>
+</PLUGIN>
