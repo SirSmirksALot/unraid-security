@@ -1,16 +1,16 @@
 <menu>
   <item>
-    <name>Unraid Security</name>
+    <name>Example Plugin</name>
     <category>Settings</category>
-    <icon>fa-lock</icon>
-    <order>100</order>
+    <icon>fa-star</icon>
+    <order>1</order>
   </item>
 </menu>
 <template>
   <page>
-    <header>Unraid Security Plugin</header>
+    <header>Example Plugin</header>
     <section>
-      <p>This plugin is now visible in Unraid 7.x Settings tab.</p>
+      <p>This is a minimal example plugin for Unraid 7.x.</p>
     </section>
   </page>
 </template>
