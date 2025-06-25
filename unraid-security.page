@@ -1,4 +1,19 @@
 <page>
   <menu>Settings</menu>
-  <badtag>This is invalid</badtag>
+  <title>Unraid Security</title>
+  <banner>Unraid Security Plugin</banner>
+  <content>
+    <fieldset>
+      <legend>Security Check</legend>
+      <form method="post">
+        <input type="submit" name="run" value="Run Security Check">
+      </form>
+      <?php
+        if ($_POST['run']) {
+          exec("/usr/local/emhttp/plugins/unraid-security/unraid-security");
+          echo "<p><strong>Security check executed. Check syslog for results.</strong></p>";
+        }
+      ?>
+    </fieldset>
+  </content>
 </page>
