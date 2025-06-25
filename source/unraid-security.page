@@ -1,11 +1,22 @@
 <?php
 $docroot = $docroot ?? $_SERVER['DOCUMENT_ROOT'] ?: '/usr/local/emhttp';
 require_once "$docroot/webGui/include/Helpers.php";
-
-$plugin = "unraid-security";
 ?>
 
-<div>
-  <h2>Unraid Security Plugin</h2>
-  <p>This plugin is installed correctly and visible in the Unraid web UI.</p>
-</div>
+<menu>
+  <item>
+    <name>Unraid Security</name>
+    <category>Settings</category>
+    <icon>fa-lock</icon>
+    <order>100</order>
+  </item>
+</menu>
+
+<template>
+  <page>
+    <header>Unraid Security Plugin</header>
+    <section>
+      <p>This plugin is installed and visible in the Unraid Settings tab.</p>
+    </section>
+  </page>
+</template>
