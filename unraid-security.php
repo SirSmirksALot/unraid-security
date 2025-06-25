@@ -12,13 +12,6 @@ if ($_POST['run_check']) {
 <html>
 <head>
   <title>Unraid Security Plugin</title>
-  <style>
-    body { font-family: sans-serif; padding: 2em; }
-    fieldset { border: 1px solid #ccc; padding: 1em; }
-    legend { font-weight: bold; }
-    button { padding: 0.5em 1em; }
-    p { margin-top: 1em; color: green; }
-  </style>
 </head>
 <body>
   <h1>Unraid Security Plugin</h1>
