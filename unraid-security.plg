@@ -1,4 +1,4 @@
-<plugin name="unraid-security" author="Sean Knight" version="2025.06.25"
+<plugin name="unraid-security" author="Sean Knight" version="2025.06.25a"
         update="https://raw.githubusercontent.com/SirSmirksALot/unraid-security-plugin/master/unraid-security.plg"
         min="6.11.5" max="9.0.0">
 
