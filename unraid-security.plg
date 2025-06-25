@@ -3,16 +3,15 @@
         min="6.11.5" max="9.0.0">
 
   <description>Security Visibility and Hardening Dashboard for Unraid</description>
-
   <support>https://github.com/SirSmirksALot/unraid-security-plugin</support>
 
   <changelog>
     <![CDATA[
-    v0.1.1 - Adds working index.php, .page, and checks script
+    v0.1.1 - Fully working with clickable GUI
     ]]>
   </changelog>
 
-  <!-- Plugin files -->
+  <!-- GUI scripts -->
   <file>
     <source>files/index.php</source>
     <destination>/usr/local/emhttp/plugins/unraid-security/index.php</destination>
