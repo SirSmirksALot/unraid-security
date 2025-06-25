@@ -1,4 +1,4 @@
-<plugin name="unraid-security" author="Sean Knight" version="2025.06.25a"
+<plugin name="unraid-security" author="Sean Knight" version="2025.06.25b"
         update="https://raw.githubusercontent.com/SirSmirksALot/unraid-security-plugin/master/unraid-security.plg"
         min="6.11.5" max="9.0.0">
 
@@ -8,10 +8,26 @@
 
   <changelog>
     <![CDATA[
-    v0.1.0 - Clean rebuild
+    v0.1.0 - Fixed file paths, working GUI
     ]]>
   </changelog>
 
-  <install file="install.sh" />
+  <file>
+    <source>https://raw.githubusercontent.com/SirSmirksALot/unraid-security-plugin/master/files/index.php</source>
+    <destination>/usr/local/emhttp/plugins/unraid-security/index.php</destination>
+    <mode>0644</mode>
+  </file>
+
+  <file>
+    <source>https://raw.githubusercontent.com/SirSmirksALot/unraid-security-plugin/master/files/unraid-security.page</source>
+    <destination>/usr/local/emhttp/plugins/unraid-security/unraid-security.page</destination>
+    <mode>0644</mode>
+  </file>
+
+  <file>
+    <source>https://raw.githubusercontent.com/SirSmirksALot/unraid-security-plugin/master/files/security-checks.sh</source>
+    <destination>/usr/local/emhttp/plugins/unraid-security/security-checks.sh</destination>
+    <mode>0755</mode>
+  </file>
+
 </plugin>
-<!-- end -->
