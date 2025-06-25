@@ -1,9 +1,11 @@
 <?php
 $docroot = $docroot ?? $_SERVER['DOCUMENT_ROOT'] ?: '/usr/local/emhttp';
 require_once "$docroot/webGui/include/Helpers.php";
+
+$plugin = "unraid-security";
 ?>
 
-<fieldset>
-  <legend>Unraid Security Plugin</legend>
-  <p>Plugin is installed and working. This is a test page to verify proper registration.</p>
-</fieldset>
+<div>
+  <h2>Unraid Security Plugin</h2>
+  <p>This plugin is installed correctly and visible in the Unraid web UI.</p>
+</div>
