@@ -1,0 +1,10 @@
+<page>
+  <title>Unraid Security Plugin</title>
+  <content>
+    <fieldset>
+      <legend>Security Check</legend>
+      <p>Click the button below to run a security check.</p>
+      <button name="check" value="Run Security Check">Run Security Check</button>
+    </fieldset>
+  </content>
+</page>
