@@ -1,18 +1,24 @@
 <?xml version="1.0"?>
 <PLUGIN name="unraid-security" author="Sean Knight" version="2025.06.25">
   <CHANGES>
-    Final fix: plugin.json is now installed via INSTALL block to avoid chmod error.
+    Moved all file installs into INSTALL section to bypass chmod failures.
   </CHANGES>
-
-  <FILE Name="/usr/local/emhttp/plugins/unraid-security/include/style.css" Mode="0644" Url="https://raw.githubusercontent.com/SirSmirksALot/unraid-security/main/src/include/style.css" />
-  <FILE Name="/usr/local/emhttp/plugins/unraid-security/scripts/security-check.sh" Mode="0755" Url="https://raw.githubusercontent.com/SirSmirksALot/unraid-security/main/src/scripts/security-check.sh" />
-  <FILE Name="/usr/local/emhttp/plugins/unraid-security/unraid-security.page" Mode="0644" Url="https://raw.githubusercontent.com/SirSmirksALot/unraid-security/main/src/unraid-security.page.txt" />
 
   <INSTALL>
     echo "Installing unraid-security plugin..."
-    mkdir -p /usr/local/emhttp/plugins/unraid-security
+    mkdir -p /usr/local/emhttp/plugins/unraid-security/include
+    mkdir -p /usr/local/emhttp/plugins/unraid-security/scripts
+
     wget -q https://raw.githubusercontent.com/SirSmirksALot/unraid-security/main/src/plugin.json.txt -O /usr/local/emhttp/plugins/unraid-security/plugin.json
+    wget -q https://raw.githubusercontent.com/SirSmirksALot/unraid-security/main/src/unraid-security.page.txt -O /usr/local/emhttp/plugins/unraid-security/unraid-security.page
+    wget -q https://raw.githubusercontent.com/SirSmirksALot/unraid-security/main/src/include/style.css -O /usr/local/emhttp/plugins/unraid-security/include/style.css
+    wget -q https://raw.githubusercontent.com/SirSmirksALot/unraid-security/main/src/scripts/security-check.sh -O /usr/local/emhttp/plugins/unraid-security/scripts/security-check.sh
+
     chmod 0644 /usr/local/emhttp/plugins/unraid-security/plugin.json
+    chmod 0644 /usr/local/emhttp/plugins/unraid-security/unraid-security.page
+    chmod 0644 /usr/local/emhttp/plugins/unraid-security/include/style.css
+    chmod 0755 /usr/local/emhttp/plugins/unraid-security/scripts/security-check.sh
+
     echo "unraid-security plugin installed successfully."
   </INSTALL>
 
