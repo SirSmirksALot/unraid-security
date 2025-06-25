@@ -1,13 +1,13 @@
 <?xml version="1.0"?>
 <PLUGIN name="unraid-security" author="Sean Knight" version="2025.06.25">
   <CHANGES>
-    Initial release. Working plugin structure modeled after appdata.backup.
+    Initial release. Fixed .page chmod failure by renaming to .page.txt.
   </CHANGES>
 
-  <FILE Name="/usr/local/emhttp/plugins/unraid-security/unraid-security.page" Mode="0644" Url="https://raw.githubusercontent.com/SirSmirksALot/unraid-security/main/src/unraid-security.page" />
   <FILE Name="/usr/local/emhttp/plugins/unraid-security/plugin.json" Mode="0644" Url="https://raw.githubusercontent.com/SirSmirksALot/unraid-security/main/src/plugin.json" />
   <FILE Name="/usr/local/emhttp/plugins/unraid-security/include/style.css" Mode="0644" Url="https://raw.githubusercontent.com/SirSmirksALot/unraid-security/main/src/include/style.css" />
   <FILE Name="/usr/local/emhttp/plugins/unraid-security/scripts/security-check.sh" Mode="0755" Url="https://raw.githubusercontent.com/SirSmirksALot/unraid-security/main/src/scripts/security-check.sh" />
+  <FILE Name="/usr/local/emhttp/plugins/unraid-security/unraid-security.page" Mode="0644" Url="https://raw.githubusercontent.com/SirSmirksALot/unraid-security/main/src/unraid-security.page.txt" />
 
   <INSTALL>
     echo "unraid-security plugin installed successfully."
