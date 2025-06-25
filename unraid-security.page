@@ -1,10 +1,13 @@
 <page>
-  <title>Unraid Security Plugin</title>
+  <menu>Settings</menu>
+  <title>Unraid Security</title>
+  <banner>Unraid Security Plugin</banner>
   <content>
     <fieldset>
       <legend>Security Check</legend>
-      <p>Click the button below to run a security check.</p>
-      <button name="check" value="Run Security Check">Run Security Check</button>
+      <form method="post">
+        <input type="submit" name="check" value="Run Security Check">
+      </form>
     </fieldset>
   </content>
 </page>
