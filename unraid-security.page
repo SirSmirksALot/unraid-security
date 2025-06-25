@@ -1,7 +1,0 @@
-<?php
-echo "<head><title>Unraid Security</title></head>";
-echo "<body style='padding:20px; font-family:sans-serif'>";
-echo "<h2>Unraid Security</h2>";
-echo "<p>This is a working plugin UI page.</p>";
-echo "</body>";
-?>
