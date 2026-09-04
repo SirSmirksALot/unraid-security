@@ -1,25 +1,126 @@
-<template>
-  <div>
-    <h1>Unraid Security</h1>
-    <p>This is the placeholder UI for the Unraid Security plugin.</p>
-  </div>
-</template>
+Menu="OtherSettings"
+Title="Unraid Security"
+Tag="shield"
+---
+<?php
+$script = '/usr/local/emhttp/plugins/unraid-security/scripts/security-check.sh';
+$output = is_executable($script) ? shell_exec($script . ' 2>/dev/null') : null;
+$data = $output ? json_decode($output, true) : null;
+$findings = is_array($data) && isset($data['findings']) && is_array($data['findings']) ? $data['findings'] : [];
 
-<script>
-export default {
-  name: "UnraidSecurity"
-};
-</script>
-
-<style scoped>
-h1 {
-  color: #44bbff;
-  font-size: 24px;
-  margin-bottom: 10px;
+function us_e($value) {
+    return htmlspecialchars((string)$value, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
 }
 
-p {
-  font-size: 16px;
-  color: #ddd;
+function us_count($findings, $status) {
+    $count = 0;
+    foreach ($findings as $finding) {
+        if (($finding['status'] ?? '') === $status) {
+            $count++;
+        }
+    }
+    return $count;
+}
+
+$failCount = us_count($findings, 'fail');
+$warningCount = us_count($findings, 'warning');
+$unknownCount = us_count($findings, 'unknown');
+$passCount = us_count($findings, 'pass');
+$overall = $failCount > 0 ? 'Needs attention' : ($warningCount > 0 ? 'Review recommended' : ($unknownCount > 0 ? 'Review incomplete' : 'No major findings'));
+?>
+
+<style>
+.us-wrap { max-width: 1180px; }
+.us-hero { display:flex; justify-content:space-between; gap:24px; align-items:flex-start; margin:10px 0 24px; }
+.us-hero h2 { margin:0 0 6px; font-size:24px; }
+.us-muted { opacity:.72; }
+.us-actions { white-space:nowrap; }
+.us-grid { display:grid; grid-template-columns:repeat(4,minmax(120px,1fr)); gap:12px; margin:0 0 24px; }
+.us-card { border:1px solid rgba(127,127,127,.35); border-radius:7px; padding:15px; background:rgba(127,127,127,.06); }
+.us-card strong { display:block; font-size:24px; margin-top:3px; }
+.us-section { margin:24px 0 10px; font-size:18px; }
+.us-finding { border:1px solid rgba(127,127,127,.32); border-left-width:5px; border-radius:6px; padding:14px 16px; margin:10px 0; }
+.us-finding--fail { border-left-color:#d9534f; }
+.us-finding--warning { border-left-color:#f0ad4e; }
+.us-finding--pass { border-left-color:#5cb85c; }
+.us-finding--info { border-left-color:#5bc0de; }
+.us-finding--unknown { border-left-color:#999; }
+.us-row { display:flex; justify-content:space-between; align-items:flex-start; gap:18px; }
+.us-title { font-weight:600; font-size:16px; }
+.us-badge { display:inline-block; border:1px solid currentColor; border-radius:999px; padding:2px 9px; font-size:11px; text-transform:uppercase; letter-spacing:.04em; white-space:nowrap; }
+.us-detail { display:grid; grid-template-columns:130px 1fr; gap:7px 12px; margin-top:11px; }
+.us-detail dt { font-weight:600; }
+.us-detail dd { margin:0; min-width:0; }
+.us-observed { margin:0; white-space:pre-wrap; overflow-wrap:anywhere; font-family:monospace; font-size:12px; }
+.us-notice { border:1px solid rgba(127,127,127,.35); border-radius:6px; padding:14px 16px; margin:16px 0; }
+@media (max-width:760px) {
+  .us-hero { display:block; }
+  .us-actions { margin-top:12px; }
+  .us-grid { grid-template-columns:repeat(2,1fr); }
+  .us-detail { grid-template-columns:1fr; }
+  .us-detail dt { margin-top:5px; }
 }
 </style>
+
+<div class="us-wrap">
+  <div class="us-hero">
+    <div>
+      <h2>Unraid Security</h2>
+      <div><strong><?=us_e($overall)?></strong></div>
+      <div class="us-muted">Read-only configuration audit. This plugin does not change server settings.</div>
+      <?php if (is_array($data)): ?>
+        <div class="us-muted">Scanner v<?=us_e($data['scanner_version'] ?? '?')?> · <?=us_e($data['generated_at'] ?? '')?></div>
+      <?php endif; ?>
+    </div>
+    <div class="us-actions">
+      <input type="button" value="Scan again" onclick="window.location.reload();">
+    </div>
+  </div>
+
+  <?php if (!$data): ?>
+    <div class="us-notice">
+      <strong>Scan unavailable.</strong><br>
+      The scanner did not return valid JSON. Verify that <code><?=us_e($script)?></code> exists and is executable.
+    </div>
+  <?php else: ?>
+    <div class="us-grid">
+      <div class="us-card">Critical / failed<strong><?=us_e($failCount)?></strong></div>
+      <div class="us-card">Warnings<strong><?=us_e($warningCount)?></strong></div>
+      <div class="us-card">Passed<strong><?=us_e($passCount)?></strong></div>
+      <div class="us-card">Unknown<strong><?=us_e($unknownCount)?></strong></div>
+    </div>
+
+    <div class="us-notice">
+      <strong>Network note:</strong> a local listening port is not proof of Internet exposure. v1 reports local listeners and configuration indicators only; router forwarding, UPnP, reverse proxies, and external reachability must be evaluated separately.
+    </div>
+
+    <div class="us-section">Findings</div>
+    <?php foreach ($findings as $finding):
+      $status = $finding['status'] ?? 'unknown';
+      $allowed = ['fail','warning','pass','info','unknown'];
+      if (!in_array($status, $allowed, true)) $status = 'unknown';
+    ?>
+      <div class="us-finding us-finding--<?=us_e($status)?>">
+        <div class="us-row">
+          <div>
+            <div class="us-title"><?=us_e($finding['title'] ?? 'Untitled finding')?></div>
+            <div class="us-muted"><?=us_e(ucfirst($finding['category'] ?? 'other'))?> · Severity: <?=us_e($finding['severity'] ?? 'unknown')?></div>
+          </div>
+          <span class="us-badge"><?=us_e($status)?></span>
+        </div>
+        <dl class="us-detail">
+          <dt>Observed</dt>
+          <dd><pre class="us-observed"><?=us_e($finding['observed'] ?? '')?></pre></dd>
+          <dt>Why it matters</dt>
+          <dd><?=us_e($finding['reason'] ?? '')?></dd>
+          <dt>Recommendation</dt>
+          <dd><?=us_e($finding['recommendation'] ?? '')?></dd>
+        </dl>
+      </div>
+    <?php endforeach; ?>
+  <?php endif; ?>
+
+  <div class="us-notice us-muted">
+    v1 intentionally avoids automatic remediation and does not claim to be a vulnerability scanner, IDS, antivirus product, or Internet perimeter scanner.
+  </div>
+</div>

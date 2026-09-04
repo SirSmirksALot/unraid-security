@@ -1,8 +1,8 @@
 {
   "name": "unraid-security",
-  "version": "2025.06.25",
+  "version": "1.0.0",
   "author": "Sean Knight",
-  "category": "Security",
-  "min": "6.12.0",
-  "description": "Placeholder plugin for testing installation structure."
+  "description": "Read-only Unraid security configuration auditor",
+  "min_unraid": "6.12.0",
+  "status": "v1 base model"
 }
