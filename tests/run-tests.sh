@@ -47,7 +47,7 @@ BAD_JSON="$TMP/bad.json"
 UNRAID_SECURITY_ROOT="$TMP" \
 UNRAID_SECURITY_LISTENERS_FILE="$TMP/listeners.txt" \
 UNRAID_SECURITY_SSHD_EFFECTIVE_FILE="$TMP/etc/ssh/sshd-effective" \
-  "$SCANNER" > "$BAD_JSON"
+  bash "$SCANNER" > "$BAD_JSON"
 
 python - "$BAD_JSON" <<'PY'
 import json, sys
@@ -96,7 +96,7 @@ GOOD_JSON="$TMP/good.json"
 UNRAID_SECURITY_ROOT="$TMP" \
 UNRAID_SECURITY_LISTENERS_FILE="$TMP/listeners.txt" \
 UNRAID_SECURITY_SSHD_EFFECTIVE_FILE="$TMP/etc/ssh/sshd-effective" \
-  "$SCANNER" > "$GOOD_JSON"
+  bash "$SCANNER" > "$GOOD_JSON"
 
 python - "$GOOD_JSON" <<'PY'
 import json, sys
