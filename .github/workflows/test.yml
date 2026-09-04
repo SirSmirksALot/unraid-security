@@ -1,0 +1,21 @@
+name: Test v1 scanner
+
+on:
+  push:
+    branches: [main, v1-base-model]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate shell syntax
+        run: |
+          bash -n src/scripts/security-check.sh
+          bash -n tests/run-tests.sh
+      - name: Run fixture tests
+        run: bash tests/run-tests.sh
