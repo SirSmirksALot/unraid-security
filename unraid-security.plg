@@ -1,28 +1,60 @@
 <?xml version="1.0"?>
-<PLUGIN name="unraid-security" author="Sean Knight" version="2025.06.25">
+<!DOCTYPE PLUGIN [
+  <!ENTITY name "unraid-security">
+  <!ENTITY author "Sean Knight">
+  <!ENTITY version "1.0.0">
+  <!ENTITY launch "Settings/unraid-security">
+  <!ENTITY pluginURL "https://raw.githubusercontent.com/SirSmirksALot/unraid-security/main/unraid-security.plg">
+  <!ENTITY sourceCommit "7d9407a5c7ab32ca405237782e7a4394c2484a32">
+]>
+<PLUGIN name="&name;" author="&author;" version="&version;" launch="&launch;" pluginURL="&pluginURL;" min="6.12.0" support="https://github.com/SirSmirksALot/unraid-security/issues" icon="shield">
+
   <CHANGES>
-    Final fix: all files installed via INSTALL block to avoid chmod errors.
+## 1.0.0 - 2026-09-04
+- First working read-only security auditor.
+- Adds a native Unraid WebGUI page and structured JSON scanner.
+- Checks root protection, Telnet/FTP, SSH settings, public SMB/NFS shares, flash exposure, WebGUI TLS, local management listeners, and installed Unraid version.
+- Installs runtime source from immutable Git commit &sourceCommit; rather than mutable main.
   </CHANGES>
 
-  <INSTALL>
-    echo "Installing unraid-security plugin..."
-    mkdir -p /usr/local/emhttp/plugins/unraid-security/include
-    mkdir -p /usr/local/emhttp/plugins/unraid-security/scripts
+  <FILE Run="/bin/bash" Method="install">
+    <INLINE><![CDATA[
+set -e
 
-    wget -q https://raw.githubusercontent.com/SirSmirksALot/unraid-security/main/src/plugin.json.txt -O /usr/local/emhttp/plugins/unraid-security/plugin.json
-    wget -q https://raw.githubusercontent.com/SirSmirksALot/unraid-security/main/src/unraid-security.page.txt -O /usr/local/emhttp/plugins/unraid-security/unraid-security.page
-    wget -q https://raw.githubusercontent.com/SirSmirksALot/unraid-security/main/src/include/style.css -O /usr/local/emhttp/plugins/unraid-security/include/style.css
-    wget -q https://raw.githubusercontent.com/SirSmirksALot/unraid-security/main/src/scripts/security-check.sh -O /usr/local/emhttp/plugins/unraid-security/scripts/security-check.sh
+TARGET="/usr/local/emhttp/plugins/unraid-security"
+BASE="https://raw.githubusercontent.com/SirSmirksALot/unraid-security/7d9407a5c7ab32ca405237782e7a4394c2484a32"
 
-    chmod 0644 /usr/local/emhttp/plugins/unraid-security/plugin.json
-    chmod 0644 /usr/local/emhttp/plugins/unraid-security/unraid-security.page
-    chmod 0644 /usr/local/emhttp/plugins/unraid-security/include/style.css
-    chmod 0755 /usr/local/emhttp/plugins/unraid-security/scripts/security-check.sh
+echo "Installing Unraid Security v1.0.0..."
+rm -rf "$TARGET"
+mkdir -p "$TARGET/scripts"
 
-    echo "unraid-security plugin installed successfully."
-  </INSTALL>
+download() {
+  src="$1"
+  dst="$2"
+  wget -q "$BASE/$src" -O "$dst"
+  if [ ! -s "$dst" ]; then
+    echo "Failed to install $src"
+    exit 1
+  fi
+}
 
-  <REMOVE>
-    rm -rf /usr/local/emhttp/plugins/unraid-security
-  </REMOVE>
+download "src/unraid-security.page.txt" "$TARGET/unraid-security.page"
+download "src/scripts/security-check.sh" "$TARGET/scripts/security-check.sh"
+download "src/plugin.json.txt" "$TARGET/plugin.json"
+
+chmod 0644 "$TARGET/unraid-security.page" "$TARGET/plugin.json"
+chmod 0755 "$TARGET/scripts/security-check.sh"
+
+echo "Unraid Security v1.0.0 installed."
+echo "Open Settings > User Utilities > Unraid Security."
+    ]]></INLINE>
+  </FILE>
+
+  <FILE Run="/bin/bash" Method="remove">
+    <INLINE><![CDATA[
+rm -rf /usr/local/emhttp/plugins/unraid-security
+echo "Unraid Security removed."
+    ]]></INLINE>
+  </FILE>
+
 </PLUGIN>
